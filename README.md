@@ -11,10 +11,9 @@ You need Python 3 environment to run this project.
 
 ## Usage
 
-1. `python -m pydatafront main` to start the server.
-   or run `sh app.sh` to generate model files and start the server.
+1. `python -m funix main` to start the server. Or run `sh app.sh` to generate model files and start the server.
 2. Open `pdf.textea.io` in your browser.
-3. Configure your `Backend URL`, Default is `http://localhost:8080`.
+3. Configure your `Backend URL`, default is `http://localhost:8080`.
 4. Done, you can use MFlunix now!
 
 ## License

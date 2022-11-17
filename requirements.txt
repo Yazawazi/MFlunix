@@ -5,4 +5,4 @@ cvxopt~=1.3.0
 flask~=2.1.2
 whitenoise~=6.2.0
 gunicorn~=20.1.0
-pydatafront
+funix~=0.2.0
