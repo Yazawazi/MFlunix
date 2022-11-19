@@ -1,4 +1,4 @@
-# MFlunix
+# MFlux
 
 Remake version from [mflux](https://github.com/forrestbao/mflux). Done with [TexTea](https://github.com/TexteaInc/)'s [Funix](https://github.com/TexteaInc/funix).
 
