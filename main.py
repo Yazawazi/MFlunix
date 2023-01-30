@@ -1,5 +1,6 @@
 import itertools
-from funix.decorator import funix_export
+from funix import funix
+from funix.hint import HTML
 
 lastWords = ""
 
@@ -72,7 +73,7 @@ def getArgumentValue(argument: str, value: str) -> float:
         return Substrate[value]
     return 0.0
 
-@funix_export(
+@funix(
     description="@[Forrest Bao](https://github.com/forrestbao), [MFlux](https://github.com/forrestbao/mflux)",
     whitelist={
         "Reactor": list(ReactorType.keys()), "Species": list(Species.keys()),
@@ -80,8 +81,7 @@ def getArgumentValue(argument: str, value: str) -> float:
         "Method": list(GeneticBackground.keys()), "Substrate_first": list(Substrate.keys()),
         "Substrate_sec": list(Substrate.keys())
     },
-    returnHTML=True,
-    labels={
+    argument_labels={
         "Reactor": "Reactor Type", "Species": "Species",
         "Nutrient": "Nutrient Type", "Oxygen": "Oxygen Condition",
         "Method": "Genetic Background", "Growth_rate": "Growth Rate (h⁻¹)",
@@ -105,174 +105,174 @@ def getArgumentValue(argument: str, value: str) -> float:
         "lb27": "Min", "ub27": "Max", "lb28": "Min", "ub28": "Max",
         "lb29": "Min", "ub29": "Max"
     },
-    layout=[
+    input_layout=[
         [
-            {"type": "argument", "argument": "Reactor"},
-            {"type": "argument", "argument": "Species"}
+            {"argument": "Reactor"},
+            {"argument": "Species"}
         ],
         [
-            {"type": "argument", "argument": "Nutrient"},
-            {"type": "argument", "argument": "Oxygen"}
+            {"argument": "Nutrient"},
+            {"argument": "Oxygen"}
         ],
-        [{"type": "argument", "argument": "Method"}],
+        [{"argument": "Method"}],
         [
-            {"type": "argument", "argument": "Growth_rate"},
-            {"type": "markdown", "content": "Normally in the range of [0, 2] h<sup>-1</sup>"}
+            {"argument": "Growth_rate"},
+            {"markdown": "Normally in the range of [0, 2] h<sup>-1</sup>"}
         ],
-        [{"type": "argument", "argument": "Substrate_uptake_rate"}],
-        [{"type": "argument", "argument": "Substrate_first"}],
+        [{"argument": "Substrate_uptake_rate"}],
+        [{"argument": "Substrate_first"}],
         [
-            {"type": "argument", "argument": "Ratio_first", "width": 8},
-            {"type": "markdown", "content": "In the range of [0, 1]"}
+            {"argument": "Ratio_first", "width": 8},
+            {"markdown": "In the range of [0, 1]"}
         ],
-        [{"type": "argument", "argument": "Substrate_sec"}],
-        [{"type": "markdown", "content": "Note: The Molar ratio of the 2nd substrate is calulated as (1 - that of primary substrate) automatically"}],
-        [{"type": "dividing"}],
-        [{"type": "markdown", "content": "**For genetically modified strain, you can manually set boundaries for fluxes below. Leave intact to use default values. Do NOT enter 0 unless you really want to.**"}],
-        [{"type": "markdown", "content": "Glucose ⇒ G6P (glk/ptsG)"}],
+        [{"argument": "Substrate_sec"}],
+        [{"markdown": "Note: The Molar ratio of the 2nd substrate is calulated as (1 - that of primary substrate) automatically"}],
+        [{"dividing": True}],
+        [{"markdown": "**For genetically modified strain, you can manually set boundaries for fluxes below. Leave intact to use default values. Do NOT enter 0 unless you really want to.**"}],
+        [{"markdown": "Glucose ⇒ G6P (glk/ptsG)"}],
         [
-            {"type": "argument", "argument": "lb1"},
-            {"type": "argument", "argument": "ub1"}
+            {"argument": "lb1"},
+            {"argument": "ub1"}
         ],
-        [{"type": "markdown", "content": "G6P ⇒ F6P (pgi)"}],
+        [{"markdown": "G6P ⇒ F6P (pgi)"}],
         [
-            {"type": "argument", "argument": "lb2"},
-            {"type": "argument", "argument": "ub2"}
+            {"argument": "lb2"},
+            {"argument": "ub2"}
         ],
-        [{"type": "markdown", "content": "FBP(F6P) ⇒ GAP + DHAP (pfk/fba)"}],
+        [{"markdown": "FBP(F6P) ⇒ GAP + DHAP (pfk/fba)"}],
         [
-            {"type": "argument", "argument": "lb3"},
-            {"type": "argument", "argument": "ub3"}
+            {"argument": "lb3"},
+            {"argument": "ub3"}
         ],
-        [{"type": "markdown", "content": "DHAP ⇒ GAP (tpiA)"}],
+        [{"markdown": "DHAP ⇒ GAP (tpiA)"}],
         [
-            {"type": "argument", "argument": "lb4"},
-            {"type": "argument", "argument": "ub4"}
+            {"argument": "lb4"},
+            {"argument": "ub4"}
         ],
-        [{"type": "markdown", "content": "GAP ⇒ 3PG (gapA/gapC)"}],
+        [{"markdown": "GAP ⇒ 3PG (gapA/gapC)"}],
         [
-            {"type": "argument", "argument": "lb5"},
-            {"type": "argument", "argument": "ub5"}
+            {"argument": "lb5"},
+            {"argument": "ub5"}
         ],
-        [{"type": "markdown", "content": "3PG ⇒ PEP (gpm/eno)"}],
+        [{"markdown": "3PG ⇒ PEP (gpm/eno)"}],
         [
-            {"type": "argument", "argument": "lb6"},
-            {"type": "argument", "argument": "ub6"}
+            {"argument": "lb6"},
+            {"argument": "ub6"}
         ],
-        [{"type": "markdown", "content": "PEP ⇒ PYR (pyk/ptsG/ppsA)"}],
+        [{"markdown": "PEP ⇒ PYR (pyk/ptsG/ppsA)"}],
         [
-            {"type": "argument", "argument": "lb7"},
-            {"type": "argument", "argument": "ub7"}
+            {"argument": "lb7"},
+            {"argument": "ub7"}
         ],
-        [{"type": "markdown", "content": "PYR ⇒ AceCoA (lpd/pfl/tdcE/aceE/aceF)"}],
+        [{"markdown": "PYR ⇒ AceCoA (lpd/pfl/tdcE/aceE/aceF)"}],
         [
-            {"type": "argument", "argument": "lb8"},
-            {"type": "argument", "argument": "ub8"}
+            {"argument": "lb8"},
+            {"argument": "ub8"}
         ],
-        [{"type": "markdown", "content": "AceCoA ⇒ Acetate (pta/ackA)"}],
+        [{"markdown": "AceCoA ⇒ Acetate (pta/ackA)"}],
         [
-            {"type": "argument", "argument": "lb9"},
-            {"type": "argument", "argument": "ub9"}
+            {"argument": "lb9"},
+            {"argument": "ub9"}
         ],
-        [{"type": "markdown", "content": "G6P ⇒ 6PG (zwf/pgl)"}],
+        [{"markdown": "G6P ⇒ 6PG (zwf/pgl)"}],
         [
-            {"type": "argument", "argument": "lb10"},
-            {"type": "argument", "argument": "ub10"}
+            {"argument": "lb10"},
+            {"argument": "ub10"}
         ],
-        [{"type": "markdown", "content": "6PG ⇒ Ru5P + CO₂ (gnd)"}],
+        [{"markdown": "6PG ⇒ Ru5P + CO₂ (gnd)"}],
         [
-            {"type": "argument", "argument": "lb11"},
-            {"type": "argument", "argument": "ub11"}
+            {"argument": "lb11"},
+            {"argument": "ub11"}
         ],
-        [{"type": "markdown", "content": "Ru5P ⇒ X5P (rpe)"}],
+        [{"markdown": "Ru5P ⇒ X5P (rpe)"}],
         [
-            {"type": "argument", "argument": "lb12"},
-            {"type": "argument", "argument": "ub12"}
+            {"argument": "lb12"},
+            {"argument": "ub12"}
         ],
-        [{"type": "markdown", "content": "Ru5P ⇔ R5P (rpi)"}],
+        [{"markdown": "Ru5P ⇔ R5P (rpi)"}],
         [
-            {"type": "argument", "argument": "lb13"},
-            {"type": "argument", "argument": "ub13"}
+            {"argument": "lb13"},
+            {"argument": "ub13"}
         ],
-        [{"type": "markdown", "content": "X5P + R5P ⇔ S7P + GAP (tkt)"}],
+        [{"markdown": "X5P + R5P ⇔ S7P + GAP (tkt)"}],
         [
-            {"type": "argument", "argument": "lb14"},
-            {"type": "argument", "argument": "ub14"}
+            {"argument": "lb14"},
+            {"argument": "ub14"}
         ],
-        [{"type": "markdown", "content": "X5P + E4P ⇔ F6P + GAP (tal)"}],
+        [{"markdown": "X5P + E4P ⇔ F6P + GAP (tal)"}],
         [
-            {"type": "argument", "argument": "lb15"},
-            {"type": "argument", "argument": "ub15"}
+            {"argument": "lb15"},
+            {"argument": "ub15"}
         ],
-        [{"type": "markdown", "content": "S7P + GAP ⇒ F6P + E4P (tkt)"}],
+        [{"markdown": "S7P + GAP ⇒ F6P + E4P (tkt)"}],
         [
-            {"type": "argument", "argument": "lb16"},
-            {"type": "argument", "argument": "ub16"}
+            {"argument": "lb16"},
+            {"argument": "ub16"}
         ],
-        [{"type": "markdown", "content": "AceCoA ⇒ CIT (gltA/prpC)"}],
+        [{"markdown": "AceCoA ⇒ CIT (gltA/prpC)"}],
         [
-            {"type": "argument", "argument": "lb17"},
-            {"type": "argument", "argument": "ub17"}
+            {"argument": "lb17"},
+            {"argument": "ub17"}
         ],
-        [{"type": "markdown", "content": "CIT ⇒ ICIT (acn)"}],
+        [{"markdown": "CIT ⇒ ICIT (acn)"}],
         [
-            {"type": "argument", "argument": "lb18"},
-            {"type": "argument", "argument": "ub18"}
+            {"argument": "lb18"},
+            {"argument": "ub18"}
         ],
-        [{"type": "markdown", "content": "ICIT ⇒ AKG + CO₂ (icd)"}],
+        [{"markdown": "ICIT ⇒ AKG + CO₂ (icd)"}],
         [
-            {"type": "argument", "argument": "lb19"},
-            {"type": "argument", "argument": "ub19"}
+            {"argument": "lb19"},
+            {"argument": "ub19"}
         ],
-        [{"type": "markdown", "content": "AKG ⇒ SUC + CO₂ (suc)"}],
+        [{"markdown": "AKG ⇒ SUC + CO₂ (suc)"}],
         [
-            {"type": "argument", "argument": "lb20"},
-            {"type": "argument", "argument": "ub20"}
+            {"argument": "lb20"},
+            {"argument": "ub20"}
         ],
-        [{"type": "markdown", "content": "SUC ⇒ FUM (sdhABCD/frdABCD)"}],
+        [{"markdown": "SUC ⇒ FUM (sdhABCD/frdABCD)"}],
         [
-            {"type": "argument", "argument": "lb21"},
-            {"type": "argument", "argument": "ub21"}
+            {"argument": "lb21"},
+            {"argument": "ub21"}
         ],
-        [{"type": "markdown", "content": "FUM ⇔ MAL (fumABC)"}],
+        [{"markdown": "FUM ⇔ MAL (fumABC)"}],
         [
-            {"type": "argument", "argument": "lb22"},
-            {"type": "argument", "argument": "ub22"}
+            {"argument": "lb22"},
+            {"argument": "ub22"}
         ],
-        [{"type": "markdown", "content": "MAL ⇔ OAA (mdh/mqo)"}],
+        [{"markdown": "MAL ⇔ OAA (mdh/mqo)"}],
         [
-            {"type": "argument", "argument": "lb23"},
-            {"type": "argument", "argument": "ub23"}
+            {"argument": "lb23"},
+            {"argument": "ub23"}
         ],
-        [{"type": "markdown", "content": "ICIT ⇒ GLX + SUC & GLX + AceCoA --> MAL (aceA/aceB)"}],
+        [{"markdown": "ICIT ⇒ GLX + SUC & GLX + AceCoA --> MAL (aceA/aceB)"}],
         [
-            {"type": "argument", "argument": "lb24"},
-            {"type": "argument", "argument": "ub24"}
+            {"argument": "lb24"},
+            {"argument": "ub24"}
         ],
-        [{"type": "markdown", "content": "6PG ⇒ PYR + GAP (edd/eda)"}],
+        [{"markdown": "6PG ⇒ PYR + GAP (edd/eda)"}],
         [
-            {"type": "argument", "argument": "lb25"},
-            {"type": "argument", "argument": "ub25"}
+            {"argument": "lb25"},
+            {"argument": "ub25"}
         ],
-        [{"type": "markdown", "content": "AceCoA ⇒ Ethanol (adh)"}],
+        [{"markdown": "AceCoA ⇒ Ethanol (adh)"}],
         [
-            {"type": "argument", "argument": "lb26"},
-            {"type": "argument", "argument": "ub26"}
+            {"argument": "lb26"},
+            {"argument": "ub26"}
         ],
-        [{"type": "markdown", "content": "PYR ⇒ Lactate (ldh)"}],
+        [{"markdown": "PYR ⇒ Lactate (ldh)"}],
         [
-            {"type": "argument", "argument": "lb27"},
-            {"type": "argument", "argument": "ub27"}
+            {"argument": "lb27"},
+            {"argument": "ub27"}
         ],
-        [{"type": "markdown", "content": "PEP + CO₂ ⇔ OAA (ppc/ppk)"}],
+        [{"markdown": "PEP + CO₂ ⇔ OAA (ppc/ppk)"}],
         [
-            {"type": "argument", "argument": "lb28"},
-            {"type": "argument", "argument": "ub28"}
+            {"argument": "lb28"},
+            {"argument": "ub28"}
         ],
-        [{"type": "markdown", "content": "MAL ⇒ PYR + CO₂ (maeA/maeB)"}],
+        [{"markdown": "MAL ⇒ PYR + CO₂ (maeA/maeB)"}],
         [
-            {"type": "argument", "argument": "lb29"},
-            {"type": "argument", "argument": "ub29"}
+            {"argument": "lb29"},
+            {"argument": "ub29"}
         ]
     ]
 )
@@ -295,7 +295,7 @@ def mflux(
     lb25: float = 0, ub25: float = 148, lb26: float = 0, ub26: float = 193.2,
     lb27: float = 0, ub27: float = 151, lb28: float = -67.6, ub28: float = 149.8,
     lb29: float = -13.5, ub29: float = 104.2
-):
+) -> HTML:
     global lastWords
     lastWords = ""
     def pushLastWords(something: str) -> None:
@@ -323,6 +323,7 @@ def mflux(
     }
     for Feature_name in Feature_names:
         if Feature_name in Specielist:
+            # I am sorry, but eval is so good here, lazy haha
             Features[Feature_name] = eval(Feature_name)
         else:
             Features[Feature_name] = getArgumentValue(Feature_name, eval(Feature_name))
