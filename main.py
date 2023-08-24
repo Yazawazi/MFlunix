@@ -73,8 +73,21 @@ def getArgumentValue(argument: str, value: str) -> float:
         return Substrate[value]
     return 0.0
 
+intro= """# Bacterial flux prediction
+
+by [Forrest Bao](https://github.com/forrestbao), [Yazawazi](https://github.com/Yazawazi/), [Stephen Wu](https://www.linkedin.com/in/gangwustl), and [Yinjie Tang](https://tang.eece.wustl.edu/)
+
+Funded by NSF grants 1356669 and 1821828
+
+Cite:  Wu et al., Rapid prediction of bacterial heterotrophic fluxomics using machine learning and constraint programming, PLoS Computational Biology, 2016, DOI: 10.1371/journal.pcbi.1004838
+
+Source code: https://github.com/Yazawazi/MFlux 
+
+Please report issues via our Github page.
+"""
+
 @funix(
-    description="@[Forrest Bao](https://github.com/forrestbao), [MFlux](https://github.com/forrestbao/mflux)",
+    description=intro,
     whitelist={
         "Reactor": list(ReactorType.keys()), "Species": list(Species.keys()),
         "Nutrient": list(NutrientType.keys()), "Oxygen": list(OxygenCondition.keys()),
@@ -106,6 +119,8 @@ def getArgumentValue(argument: str, value: str) -> float:
         "lb29": "Min", "ub29": "Max"
     },
     input_layout=[
+        [{'dividing':""}],
+        [{"markdown":"Select or enter the values for your experiment and we will compute the flux values for you."}],
         [
             {"argument": "Reactor"},
             {"argument": "Species"}
