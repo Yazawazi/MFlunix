@@ -1,6 +1,8 @@
 # MFlux
 
-Remake version from [mflux](https://github.com/forrestbao/mflux). Done with [TexTea](https://github.com/TexteaInc/)'s [Funix](https://github.com/TexteaInc/funix), the minimalist way to build web apps in Python. 
+> Try this online: http://mflux-dev-1-env.eba-mzpaqdsq.us-east-2.elasticbeanstalk.com/
+
+Remake version from [mflux](https://github.com/forrestbao/mflux). Done with [TexTea](https://github.com/TexteaInc/)'s [Funix](https://github.com/TexteaInc/funix), the minimalist way to build web apps in Python.
 
 ![screenshot](./static/screenshot.png)
 
@@ -15,7 +17,7 @@ You need Python 3 environment to run this project.
 ## Usage
 
 1. `funix main.py` to start the server. Or run `sh app.sh` to generate model files and start the server.
-2. Done, you can use MFlunix now!
+2. Done, you can use MFlux now!
 
 ## License
 
