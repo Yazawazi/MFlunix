@@ -1,6 +1,6 @@
 # MFlux
 
-> Try this online: http://mflux-dev-1-env.eba-mzpaqdsq.us-east-2.elasticbeanstalk.com/
+> Try this online: http://mflux.example.funix.io/
 
 Remake version from [mflux](https://github.com/forrestbao/mflux). Done with [TexTea](https://github.com/TexteaInc/)'s [Funix](https://github.com/TexteaInc/funix), the minimalist way to build web apps in Python.
 
