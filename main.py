@@ -56,6 +56,7 @@ Substrate = {
     "Acetate": 13, "NaHCO₃": 14
 }
 
+@funix.funix(disable=True)
 def getArgumentValue(argument: str, value: str) -> float:
     if argument == "Reactor":
         return ReactorType[value]
@@ -81,7 +82,7 @@ Funded by NSF grants 1356669 and 1821828
 
 Cite:  Wu et al., Rapid prediction of bacterial heterotrophic fluxomics using machine learning and constraint programming, PLoS Computational Biology, 2016, DOI: 10.1371/journal.pcbi.1004838
 
-Source code: https://github.com/Yazawazi/MFlux 
+Source code: https://github.com/Yazawazi/MFlux
 
 Please report issues via our Github page.
 """
@@ -292,9 +293,15 @@ Please report issues via our Github page.
     ]
 )
 def mflux(
-    Reactor: str, Species: str, Nutrient: str, Oxygen: str, Method: str,
-    Growth_rate: float, Substrate_uptake_rate: float,
-    Substrate_first: str, Ratio_first: float, Substrate_sec: str,
+    Reactor: str = ReactorType.keys()[0],
+    Species: str = Species.keys()[0],
+    Nutrient: str = NutrientType.keys()[0],
+    Oxygen: str = OxygenCondition.keys()[0],
+    Method: str = GeneticBackground.keys()[0],
+    Growth_rate: float = 1.0,
+    Substrate_uptake_rate: float = 1.0,
+    Substrate_first: str = Substrate.keys()[0],
+    Ratio_first: float = 1.0, Substrate_sec: str = Substrate.keys()[0],
     lb1: float = 0, ub1: float = 100, lb2: float = -99.9, ub2: float = 99.5,
     lb3: float = -51.5, ub3: float = 99.3, lb4: float = -51.5, ub4: float = 99.3,
     lb5: float = -13.5, ub5: float = 216.6, lb6: float = -23.3, ub6: float = 196.2,
